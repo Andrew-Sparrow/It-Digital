@@ -44,7 +44,7 @@ const StyledButton = styled.button`
 const Button = (props) => {
   return (
     <StyledButton {...props} >
-      Button
+      {props.children}
     </ StyledButton >
   )
 };

@@ -28,9 +28,9 @@ const StyledButtonContainer = styled(Flex)`
 const ButtonContainer = (props) => {
   return (
     <StyledButtonContainer>
-      <Button $outlined color={'#fff'} $align='flex-end'>Button</Button>
-      <Button $outlined color={'#fff'} $align='flex-end'>Button</Button>
-      <Button $outlined color={'#fff'} $align='flex-end'>Button</Button>
+      <Button $outlined color={'#fff'} $align='flex-end'>Add</Button>
+      <Button $outlined color={'#fff'} $align='flex-end'>Delete</Button>
+      <Button $outlined color={'#fff'} $align='flex-end'>Edit</Button>
     </StyledButtonContainer>
   )
 }
