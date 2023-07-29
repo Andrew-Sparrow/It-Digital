@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const StyledEditPanel = styled.section`
   width: 100%;
-  height: 70vh;
   background-color: #5e6569;
   color: #fff;
   font-family: 'Arial', sans-serif;
