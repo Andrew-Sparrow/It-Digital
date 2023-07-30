@@ -26,11 +26,23 @@ const StyledButtonContainer = styled(Flex)`
 `;
 
 const ButtonContainer = (props) => {
+  const handleClickAdd = () => {
+    alert('handleClickAdd');
+  }
+
+  const handleClickEdit = () => {
+    alert('handleClickEdit');
+  }
+
+  const handleClickDelete = () => {
+    alert('handleClickDelete');
+  }
+
   return (
     <StyledButtonContainer>
-      <Button $outlined color={'#fff'} $align='flex-end'>Add</Button>
-      <Button $outlined color={'#fff'} $align='flex-end'>Delete</Button>
-      <Button $outlined color={'#fff'} $align='flex-end'>Edit</Button>
+      <Button $outlined color={'#fff'} $align='flex-end' onClick={handleClickAdd}>Add</Button>
+      <Button $outlined color={'#fff'} $align='flex-end' onClick={handleClickDelete}>Delete</Button>
+      <Button $outlined color={'#fff'} $align='flex-end' onClick={handleClickEdit}>Edit</Button>
     </StyledButtonContainer>
   )
 }

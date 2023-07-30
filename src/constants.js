@@ -1,0 +1,2 @@
+export const MAX_LETTERS_AMOUNT_TITLE = 20;
+export const MAX_LETTERS_AMOUNT_TEXT = 15;

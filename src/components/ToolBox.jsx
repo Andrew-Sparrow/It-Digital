@@ -7,9 +7,11 @@ import { Search } from './search/Search';
 
 
 const StyledToolBox = styled(Flex)`
-  background-color: #82f74c;
+  background-color: #5e6569;
   flex-wrap: wrap;
-  
+  border-bottom: 1px solid #000;
+  transition: 0.3s;
+
   @media ${ props => props.theme.media.tablet } {
     flex-direction: column;
   }

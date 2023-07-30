@@ -5,10 +5,9 @@ import { NoteItem } from './NoteItem';
 
 
 const StyledNotesPanel = styled.section`
-  background-color: #d4c42c;
-  /* background-color: #5c66de; */
-  padding: 20px;
-  min-height: 50vh;
+  background-color: #5e6569;
+
+  min-height: 300px;
 
   &:nth-last-child(1) {
     margin-bottom: 0;
@@ -19,14 +18,11 @@ const StyledNotesPanel = styled.section`
   }
 
   @media ${ props => props.theme.media.tablet } {
-    /* width: 400px; */
     width: 100%;
-    background-color: #c52a2a;
   }
 
   @media ${ props => props.theme.media.phone } {
     width: 100%;
-    background-color: #cf6f4a;
   }
 `;
 

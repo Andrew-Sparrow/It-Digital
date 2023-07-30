@@ -10,7 +10,7 @@
 }
 
 .search:focus {
-  outline: 3px ridge #82f74c;
+  outline: 3px ridge #2d6bbb;
 }
 
 @media screen and (max-width: 768px) {

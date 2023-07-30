@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const StyledEditPanel = styled.section`
+const StyledEditPanel = styled.textarea`
   width: 100%;
-  background-color: #5e6569;
+  min-height: 300px;
+  background-color: #7f7f7f;
   color: #fff;
   font-family: 'Arial', sans-serif;
   font-size: 16px;
@@ -24,7 +25,7 @@ const StyledEditPanel = styled.section`
 
 const EditPanel = (props) => {
   return (
-    <StyledEditPanel {...props}>EditPanel</StyledEditPanel>
+    <StyledEditPanel {...props}></StyledEditPanel>
   )
 };
 

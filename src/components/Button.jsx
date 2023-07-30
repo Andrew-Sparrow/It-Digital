@@ -10,14 +10,15 @@ const StyledButton = styled.button`
   cursor: pointer;
   color: #000;
   margin-right: 10px;
+  opacity: 0.8;
+
 
   &:focus {
     outline: none;
   };
 
   &:hover {
-    opacity: 0.6;
-    transition: opacity 0.3s;
+    opacity: 1;
   }
 
   align-self: ${props => props.$align || 'stretch'};
@@ -42,8 +43,12 @@ const StyledButton = styled.button`
 
 
 const Button = (props) => {
+  const handleClick = () => {
+    alert('You clicked me!');
+  }
+
   return (
-    <StyledButton {...props} >
+    <StyledButton {...props} onClick={props.onClick}>
       {props.children}
     </ StyledButton >
   )
