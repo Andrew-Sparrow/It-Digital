@@ -45,7 +45,7 @@ const notes = [
 const NotesPanel = (props) => {
   return (
     <StyledNotesPanel {...props}>{
-      notes.map((item) => <NoteItem {...item} key={item.id} />)
+      notes.map((item) => <NoteItem {...item} key={item.id} isActive={true} />)
     }</StyledNotesPanel>
   )
 };

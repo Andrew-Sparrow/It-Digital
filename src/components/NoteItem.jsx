@@ -6,12 +6,15 @@ import { truncate } from '../utils';
 
 
 const StyledNoteItem = styled.div`
-  /* background-color: #b8e9ff; */
   color: #fff;
   padding: 20px;
   cursor: pointer;
   opacity: 0.8;
   transition: 0.3s;
+
+  ${({ $isActive }) => $isActive && `
+    background: blue;
+  `}
 
   &:hover {
     opacity: 1;
@@ -25,10 +28,15 @@ const StyledNoteItem = styled.div`
 
 
 const NoteItem = (props) => {
-  const { title, time, text } = props;
+  const { title, time, text, isActive } = props;
+
+  const handleButtonClick = () => {
+    // history.push('/dresses?color=blue')
+    console.log('click')
+  };
 
   return (
-    <StyledNoteItem>
+    <StyledNoteItem $isActive={isActive} onClick={handleButtonClick}>
       <div className='title'>
         <strong >{truncate(title, MAX_LETTERS_AMOUNT_TITLE)}</strong>
       </div>
