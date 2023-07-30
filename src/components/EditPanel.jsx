@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { notes } from '../db';
+import { NoteContext } from '../App';
 
 
 const StyledEditPanel = styled.textarea`
@@ -24,8 +26,13 @@ const StyledEditPanel = styled.textarea`
 `;
 
 const EditPanel = (props) => {
+  const [noteContent, setNoteContent] = useState('');
+  const { activeId } = useContext(NoteContext);
+
+  const editText = notes.find((note) => note.id === activeId).text;
+
   return (
-    <StyledEditPanel {...props}></StyledEditPanel>
+    <StyledEditPanel {...props} value={editText} onChange={e => setNoteContent(e.target.value)}></StyledEditPanel>
   )
 };
 

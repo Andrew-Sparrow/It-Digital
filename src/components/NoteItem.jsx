@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { MAX_LETTERS_AMOUNT_TEXT, MAX_LETTERS_AMOUNT_TITLE } from '../constants';
 import { truncate } from '../utils';
+import { NoteContext } from '../App';
 
 
 const StyledNoteItem = styled.div`
@@ -13,7 +14,7 @@ const StyledNoteItem = styled.div`
   transition: 0.3s;
 
   ${({ $isActive }) => $isActive && `
-    background: blue;
+    background: #78aeff;
   `}
 
   &:hover {
@@ -24,30 +25,32 @@ const StyledNoteItem = styled.div`
   .title {
     margin-bottom: 8px;
   }
+
+  .time {
+    margin-right: 10px;
+  }
 `;
 
 
 const NoteItem = (props) => {
-  const { title, time, text, isActive } = props;
+  const { id, title, time, text } = props;
 
-  const handleButtonClick = () => {
-    // history.push('/dresses?color=blue')
-    console.log('click')
+  const { activeId, setActiveId } = useContext(NoteContext);
+
+  const handleButtonClick = (id) => {
+    setActiveId(id)
   };
 
   return (
-    <StyledNoteItem $isActive={isActive} onClick={handleButtonClick}>
+    <StyledNoteItem $isActive={id === activeId} onClick={() => handleButtonClick(id)}>
       <div className='title'>
         <strong >{truncate(title, MAX_LETTERS_AMOUNT_TITLE)}</strong>
       </div>
       <div className='text'>
-        <p><span>{time}</span>{truncate(text, MAX_LETTERS_AMOUNT_TEXT)}</p>
+        <p><span className='time'>{time}</span>{truncate(text, MAX_LETTERS_AMOUNT_TEXT)}</p>
       </div>
     </StyledNoteItem>
   )
 };
 
-
-
-// export { StyledNoteItem };
 export { NoteItem };

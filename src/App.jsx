@@ -1,5 +1,7 @@
-import './App.css';
+import { useState, createContext } from 'react';
 import styled from 'styled-components';
+
+import './App.css';
 import { EditPanel } from './components/EditPanel';
 import { NotesPanel } from './components/NotesPanel';
 import { PanelContainer } from './components/PanelContainer';
@@ -19,15 +21,22 @@ const AppWrapper = styled.div`
 `;
 
 
+export const NoteContext = createContext( null );
+
 function App() {
+
+  const [activeId, setActiveId] = useState( null );
+
   return (
-    <AppWrapper>
-      <ToolBox />
-      <PanelContainer>
-        <NotesPanel />
-        <EditPanel />
-      </PanelContainer>
-    </AppWrapper>
+    <NoteContext.Provider value={{activeId, setActiveId}}>
+      <AppWrapper>
+        <ToolBox />
+        <PanelContainer>
+          <NotesPanel />
+          <EditPanel />
+        </PanelContainer>
+      </AppWrapper>
+    </NoteContext.Provider>
   );
 }
 
