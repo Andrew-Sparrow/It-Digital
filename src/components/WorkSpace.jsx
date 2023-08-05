@@ -3,6 +3,27 @@ import styled from "styled-components";
 import { notes } from "../db";
 import { NoteContext } from "../App";
 
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const StyledTime = styled.p`
+  text-align: center;
+  padding: 10px 20px 10px;
+  background-color: #6b6b6b;
+  color: #cecdcd;
+`;
+
+const StyledTitle = styled.p`
+  text-align: left;
+  font-weight: 700;
+  padding: 10px 20px 10px;
+  background-color: #888888;
+  color: #e0e0e0;
+`;
+
 const StyledEditPanel = styled.textarea`
   width: 100%;
   min-height: 300px;
@@ -25,18 +46,40 @@ const StyledEditPanel = styled.textarea`
 `;
 
 const WorkSpace = (props) => {
-  const [noteContent, setNoteContent] = useState("");
+  const [noteItem, setNoteItem] = useState({});
+  const [noteText, setNoteText] = useState("");
   const { activeId } = useContext(NoteContext);
+
+  const handleChangeTextNote = (evt) => {
+    setNoteText(evt.target.value);
+    let item = notes.find((note) => note.id === activeId);
+    item.text = evt.target.value;
+  };
 
   useEffect(() => {
     if (activeId) {
-      let editText = notes.find((note) => note.id === activeId).text;
-      setNoteContent(editText);
+      let item = notes.find((note) => note.id === activeId);
+      let text = item.text;
+      setNoteItem(item);
+      setNoteText(text);
     }
-  }, [activeId]);
+  }, [activeId, noteItem, setNoteItem]);
 
   return (
-      <StyledEditPanel {...props} value={noteContent} onChange={(e) => setNoteContent(e.target.value)}></StyledEditPanel>
+    <StyledContainer>
+      <StyledTime>{noteItem.time}</StyledTime>
+      <StyledTitle>{noteItem.title}</StyledTitle>
+      {/* <StyledEditPanel
+         {...props}
+         value={noteItem.text}
+         onChange={(e) =>
+           setNoteItem((prevItem) => {
+             console.log(prevItem)
+             return Object.assign(prevItem, { text: e.target.value });
+           })
+         }></StyledEditPanel> */}
+      <StyledEditPanel {...props} value={noteText} onChange={handleChangeTextNote}></StyledEditPanel>
+    </StyledContainer>
   );
 };
 
