@@ -4,7 +4,8 @@ let request;
 let db;
 let version = 1;
 const DBName = 'notesDB';
-const storeName = 'NotesStore';
+
+export const storeName = 'NotesStore';
 
 
 export const addData = (data) => {
