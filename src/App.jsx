@@ -7,6 +7,7 @@ import { SideBar } from "./components/SideBar";
 import { PanelContainer } from "./components/PanelContainer";
 import { ToolBox } from "./components/ToolBox";
 import { initDB } from "./lib/indexedDB";
+import { notes } from "./db";
 
 const StyledApp = styled.main`
   width: 100%;
@@ -24,6 +25,7 @@ export const NoteContext = createContext(null);
 
 function App() {
   const [activeId, setActiveId] = useState(null);
+  const [activeNote, setActiveNote] = useState(null);
   const [isDBReady, setIsDBReady] = useState(false);
 
   const handleInitDB = async () => {
@@ -35,8 +37,13 @@ function App() {
     handleInitDB();
   }, [isDBReady]);
 
+      // if (activeId) {
+      //   let editText = notes.find((note) => note.id === activeId).text;
+      //   setNoteContent(editText);
+      // }
+
   return (
-    <NoteContext.Provider value={{ activeId, setActiveId, isDBReady }}>
+    <NoteContext.Provider value={{ activeId, setActiveId, isDBReady, activeNote, setActiveNote }}>
       {!isDBReady ? (
         <main style={{ textAlign: "center", marginTop: "3rem" }}>
           <p style={{ padding: "26px", fontSize: "20px" }}>Loading DB... </p>

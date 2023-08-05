@@ -34,7 +34,10 @@ const WorkSpace = (props) => {
       setNoteContent(editText);
     }
   }, [activeId]);
-  return <StyledEditPanel {...props} value={noteContent} onChange={(e) => setNoteContent(e.target.value)}></StyledEditPanel>;
+
+  return (
+      <StyledEditPanel {...props} value={noteContent} onChange={(e) => setNoteContent(e.target.value)}></StyledEditPanel>
+  );
 };
 
 export { WorkSpace };

@@ -11,14 +11,17 @@ const ButtonAdd = () => {
   const handleAddUser = async (e) => {
     e.preventDefault();
 
+    const title = "Your New Note Title";
     const text = "Your New Note";
+    title.trim();
     text.trim();
 
     const id = Date.now();
+    const time = Date.now();
 
     try {
       if (isDBReady) {
-        const res = await addData({ text, id });
+        const res = await addData({ text, id, time, title });
       }
     } catch (err) {
       if (err instanceof Error) {
