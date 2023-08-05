@@ -36,7 +36,7 @@ function App() {
   }, [isDBReady]);
 
   return (
-    <NoteContext.Provider value={{ activeId, setActiveId }}>
+    <NoteContext.Provider value={{ activeId, setActiveId, isDBReady }}>
       {!isDBReady ? (
         <main style={{ textAlign: "center", marginTop: "3rem" }}>
           <p style={{ padding: "26px", fontSize: "20px" }}>Loading DB... </p>

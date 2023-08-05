@@ -43,9 +43,6 @@ const StyledButton = styled.button`
 
 
 const Button = (props) => {
-  const handleClick = () => {
-    alert('You clicked me!');
-  }
 
   return (
     <StyledButton {...props} onClick={props.onClick}>
