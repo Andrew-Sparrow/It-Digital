@@ -2,8 +2,8 @@ import { useState, createContext } from 'react';
 import styled from 'styled-components';
 
 import './App.css';
-import { EditPanel } from './components/EditPanel';
-import { NotesPanel } from './components/NotesPanel';
+import { WorkSpace } from './components/WorkSpace';
+import { SideBar } from './components/SideBar';
 import { PanelContainer } from './components/PanelContainer';
 import { ToolBox } from './components/ToolBox';
 
@@ -32,8 +32,8 @@ function App() {
       <AppWrapper>
         <ToolBox />
         <PanelContainer>
-          <NotesPanel />
-          <EditPanel />
+          <SideBar />
+          <WorkSpace />
         </PanelContainer>
       </AppWrapper>
     </NoteContext.Provider>

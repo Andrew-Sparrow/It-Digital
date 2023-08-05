@@ -32,7 +32,7 @@ const StyledNoteItem = styled.div`
 `;
 
 
-const NoteItem = (props) => {
+const ListItem = (props) => {
   const { id, title, time, text } = props;
 
   const { activeId, setActiveId } = useContext(NoteContext);
@@ -53,4 +53,4 @@ const NoteItem = (props) => {
   )
 };
 
-export { NoteItem };
+export { ListItem };

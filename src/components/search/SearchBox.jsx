@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './search.module.css';
 
 
-const Search = () => {
+const SearchBox = () => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleChangeSearchValue = (evt) => {
@@ -14,4 +14,4 @@ const Search = () => {
   )
 };
 
-export { Search };
+export { SearchBox };

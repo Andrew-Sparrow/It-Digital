@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Flex } from './Flex';
 import { ButtonContainer } from './ButtonContainer';
-import { Search } from './search/Search';
+import { SearchBox } from './search/SearchBox';
 
 
 const StyledToolBox = styled(Flex)`
@@ -26,7 +26,7 @@ const ToolBox = (props) => {
   return (
     <StyledToolBox>
       <ButtonContainer />
-      <Search />
+      <SearchBox />
     </StyledToolBox>
   )
 };

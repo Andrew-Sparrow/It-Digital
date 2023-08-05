@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { NoteItem } from './NoteItem';
+import { ListItem } from './ListItem';
 import { notes } from '../db';
 
 
@@ -28,13 +28,13 @@ const StyledNotesPanel = styled.section`
 `;
 
 
-const NotesPanel = (props) => {
+const SideBar = (props) => {
 
   return (
     <StyledNotesPanel {...props}>{
-      notes.map((item) => <NoteItem {...item} key={item.id} />)
+      notes.map((item) => <ListItem {...item} key={item.id} />)
     }</StyledNotesPanel>
   )
 };
 
-export { NotesPanel };
+export { SideBar };
