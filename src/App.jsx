@@ -6,7 +6,7 @@ import { WorkSpace } from "./components/WorkSpace";
 import { SideBar } from "./components/SideBar";
 import { PanelContainer } from "./components/PanelContainer";
 import { ToolBox } from "./components/ToolBox";
-import { initDB } from "./lib/indexedDB";
+import { addData, getStoreData, initDB } from "./lib/indexedDB";
 import { notes } from "./db";
 
 const StyledApp = styled.main`
@@ -29,13 +29,17 @@ function App() {
 
   const handleInitDB = async () => {
     const status = await initDB();
+
+    // add initial data to DB
+    await addData(notes[0]);
+    await addData(notes[1]);
+    // await getStoreData();
     setIsDBReady(status);
   };
 
   useEffect(() => {
     handleInitDB();
   }, [isDBReady]);
-
 
   return (
     <NoteContext.Provider value={{ activeId, setActiveId, isDBReady }}>

@@ -62,7 +62,7 @@ const WorkSpace = (props) => {
   useEffect(() => {
     if (activeId) {
       let item = notes.find((note) => note.id === activeId);
-      let text = item.text;
+      let text = item.text; //TODO fix error
       setNoteItem(item);
       setNoteText(text);
     }

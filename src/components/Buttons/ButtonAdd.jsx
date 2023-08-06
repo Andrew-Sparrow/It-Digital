@@ -8,7 +8,7 @@ const ButtonAdd = () => {
 
   const { isDBReady } = useContext(NoteContext);
 
-  const handleAddUser = async (e) => {
+  const handleAddNewNote = async (e) => {
     e.preventDefault();
 
     const title = "Your New Note Title";
@@ -22,18 +22,19 @@ const ButtonAdd = () => {
     try {
       if (isDBReady) {
         const res = await addData({ text, id, time, title });
+        console.log(res);
       }
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError("Something went wrong");
+        setError("Something went wrong to add new note");
       }
     }
   };
 
   return (
-    <Button $outlined color={"#fff"} $align="flex-end" onClick={handleAddUser} $isDisabled={!isDBReady}>
+    <Button $outlined color={"#fff"} $align="flex-end" onClick={handleAddNewNote} $isDisabled={!isDBReady}>
       Add
     </Button>
   );

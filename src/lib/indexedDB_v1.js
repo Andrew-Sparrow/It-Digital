@@ -9,9 +9,8 @@ const STORE_NAME = 'NotesStore';
 
 export const initDB = () => {
   return new Promise((resolve) => {
-
     // open the connection
-    request = indexedDB.open(DB_NAME, version);
+    request = indexedDB.open(DB_NAME);
 
     request.onupgradeneeded = () => {
       db = request.result;
@@ -31,7 +30,7 @@ export const initDB = () => {
     request.onerror = () => {
       resolve(false);
     };
-  })
+  });
 };
 
 export const addData = (data) => {
@@ -59,20 +58,63 @@ export const addData = (data) => {
   });
 };
 
-export const getStoreData = () => {
+export const getStoreDataAsync = () => {
   return new Promise((resolve) => {
-    const request = db.transaction(STORE_NAME, 'readonly')
+    // const request = indexedDB.open(STORE_NAME);
+
+    request.onsuccess = () => {
+      console.log('request.onsuccess - getAllData');
+      // db = request.result;
+      const res = db.transaction(STORE_NAME, 'readonly')
+        .objectStore(STORE_NAME)
+        .getAll();
+
+      console.log(res.result);
+      resolve(res.result);
+
+      db.transaction.oncomplete = (event) => {
+        // Store values in the newly created objectStore.
+
+        res.onsuccess = () => {
+        };
+      };
+    };
+
+    request.onerror = (err) => {
+      console.error(err.message);
+    }
+  });
+};
+
+export function getStoreData() {
+  // const request = db.transaction(STORE_NAME)
+  //   .objectStore(STORE_NAME)
+  //   .getAll();
+  request = indexedDB.open(DB_NAME, version);
+
+  db.transaction.oncomplete = (event) => {
+    // Store values in the newly created objectStore.
+    const res = db.transaction(STORE_NAME, 'readonly')
       .objectStore(STORE_NAME)
       .getAll();
 
-    request.onsuccess = () => {
-      console.log('Got all the notes');
-      console.log(request.result);
-      resolve(request.result);
-    }
+    res.onsuccess = () => {
+      console.log(res.result);
+      // resolve(res.result);
+      return res.result;
+    };
+  };
 
-    request.onerror = (err) => {
-      console.error(`Error to get all notes: ${ err.message }`)
-    }
-  });
+  request.onsuccess = () => {
+    const notes = request.result;
+
+    console.log('Got all the notes');
+    console.log(notes);
+
+    return notes;
+  }
+
+  request.onerror = (err) => {
+    console.error(`Error to get all notes: ${ err }`)
+  }
 }
