@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { MAX_LETTERS_AMOUNT_TEXT, MAX_LETTERS_AMOUNT_TITLE } from '../constants';
 import { truncate } from '../utils';
 import { NoteContext } from '../App';
+import { formatDateShort, formatTimeHoursAndMinutes, isToday } from '../util';
 
 
 const StyledNoteItem = styled.div`
@@ -47,7 +48,7 @@ const ListItem = (props) => {
         <strong >{truncate(title, MAX_LETTERS_AMOUNT_TITLE)}</strong>
       </div>
       <div className='text'>
-        <p><span className='time'>{new Date(time).toDateString()}</span>{truncate(text, MAX_LETTERS_AMOUNT_TEXT)}</p>
+        <p><span className='time'>{isToday() ? formatTimeHoursAndMinutes(time) : formatDateShort(time)}</span>{truncate(text, MAX_LETTERS_AMOUNT_TEXT)}</p>
       </div>
     </StyledNoteItem>
   )

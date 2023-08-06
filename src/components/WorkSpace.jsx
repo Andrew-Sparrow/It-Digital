@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { notes } from "../db";
 import { NoteContext } from "../App";
+import { formatDateFullForTitle } from "../util";
 
 const StyledContainer = styled.div`
   display: flex;
@@ -10,6 +11,7 @@ const StyledContainer = styled.div`
 `;
 
 const StyledTime = styled.p`
+  min-height: 40px;
   text-align: center;
   padding: 10px 20px 10px;
   background-color: #6b6b6b;
@@ -17,6 +19,7 @@ const StyledTime = styled.p`
 `;
 
 const StyledTitle = styled.p`
+  min-height: 40px;
   text-align: left;
   font-weight: 700;
   padding: 10px 20px 10px;
@@ -46,7 +49,7 @@ const StyledEditPanel = styled.textarea`
 `;
 
 const WorkSpace = (props) => {
-  const [noteItem, setNoteItem] = useState({});
+  const [noteItem, setNoteItem] = useState(null);
   const [noteText, setNoteText] = useState("");
   const { activeId } = useContext(NoteContext);
 
@@ -67,8 +70,8 @@ const WorkSpace = (props) => {
 
   return (
     <StyledContainer>
-      <StyledTime>{noteItem.time}</StyledTime>
-      <StyledTitle>{noteItem.title}</StyledTitle>
+      <StyledTime>{noteItem && formatDateFullForTitle(noteItem.time)}</StyledTime>
+      <StyledTitle>{noteItem && noteItem.title}</StyledTitle>
       {/* <StyledEditPanel
          {...props}
          value={noteItem.text}
