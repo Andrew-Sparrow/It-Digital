@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 import { ListItem } from "./ListItem";
 import { notes } from "../db";
-// import { getStoreData } from "../lib/indexedDB_v1";
-// import { getStoreDataAsync } from "../lib/indexedDB_v1";
 import { getStoreData } from "../lib/indexedDB";
 import { NoteContext } from "../App";
 
@@ -12,7 +10,8 @@ import { NoteContext } from "../App";
 const StyledNotesPanel = styled.section`
   background-color: #5e6569;
 
-  min-height: 300px;
+  height: 480px;
+  overflow-y: auto;
 
   &:nth-last-child(1) {
     margin-bottom: 0;
@@ -36,7 +35,8 @@ const SideBar = (props) => {
   const [errorObj, setErrorObj] = useState(null);
   const { isDBReady } = useContext(NoteContext);
 
-    const handleGetStoreItems = async (e) => {
+    // TODO create custom hook
+    const getStoreItems = async (e) => {
       try {
         if (isDBReady) {
           const res = await getStoreData();
@@ -52,14 +52,8 @@ const SideBar = (props) => {
       }
     };
 
-  // const handleGetStoreItems = async () => {
-  //   const notes = await getStoreDataAsync().then((notes) => console.log(notes, "asdfas"));
-  //   console.log(notes, "handleGetStoreItems");
-  //   setStoreItems(notes);
-  // };
-
   useEffect(() => {
-    handleGetStoreItems();
+    getStoreItems();
   }, []);
 
   return <StyledNotesPanel {...props}>{storeItems && storeItems.map((item) => <ListItem {...item} key={item.id} />)}</StyledNotesPanel>;

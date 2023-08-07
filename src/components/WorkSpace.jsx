@@ -4,10 +4,12 @@ import { notes } from "../db";
 import { NoteContext } from "../App";
 import { formatDateFullForTitle } from "../util";
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 50vh;
+  overflow: auto;
 `;
 
 const StyledTime = styled.p`
@@ -29,7 +31,8 @@ const StyledTitle = styled.p`
 
 const StyledEditPanel = styled.textarea`
   width: 100%;
-  min-height: 300px;
+  height: 400px;
+  overflow-y: auto;
   background-color: #7f7f7f;
   color: #fff;
   font-family: "Arial", sans-serif;
