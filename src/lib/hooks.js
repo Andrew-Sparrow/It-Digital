@@ -1,6 +1,6 @@
-import { useState, useEffect , useContext } from "react";
-import { getStoreData } from "./lib/indexedDB";
-import { NoteContext } from "./App";
+import { useState, useEffect, useContext } from "react";
+import { getStoreData } from "./indexedDB";
+import { NoteContext } from "../App";
 
 
 export const useStoreItems = () => {
@@ -28,4 +28,6 @@ export const useStoreItems = () => {
   useEffect(() => {
     getStoreItems();
   }, []);
+
+  return storeItems;
 };

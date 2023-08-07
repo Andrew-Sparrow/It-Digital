@@ -22,3 +22,7 @@ export const isToday = (time) => {
 export const formatTimeHoursAndMinutes = (time) => {
   return `${ moment(time).format('hh:mm A') }`;
 };
+
+export function truncate(str, n) {
+  return (str.length > n) ? str.slice(0, n - 1) + '...' : str;
+};

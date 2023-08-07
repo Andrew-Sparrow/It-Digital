@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import { MAX_LETTERS_AMOUNT_TEXT, MAX_LETTERS_AMOUNT_TITLE } from '../constants';
-import { truncate } from '../utils';
+import { truncate } from '../util';
 import { NoteContext } from '../App';
 import { formatDateShort, formatTimeHoursAndMinutes, isToday } from '../util';
 

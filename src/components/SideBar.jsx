@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { ListItem } from "./ListItem";
-import { notes } from "../db";
-import { getStoreData } from "../lib/indexedDB";
-import { NoteContext } from "../App";
-
+import { useStoreItems } from "../lib/hooks";
 
 const StyledNotesPanel = styled.section`
   background-color: #5e6569;
@@ -31,30 +28,7 @@ const StyledNotesPanel = styled.section`
 `;
 
 const SideBar = (props) => {
-  const [storeItems, setStoreItems] = useState([]);
-  const [errorObj, setErrorObj] = useState(null);
-  const { isDBReady } = useContext(NoteContext);
-
-    // TODO create custom hook
-    const getStoreItems = async (e) => {
-      try {
-        if (isDBReady) {
-          const res = await getStoreData();
-          setStoreItems(res);
-          console.log(res);
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          setErrorObj(err.message);
-        } else {
-          setErrorObj("Something went wrong to get notes");
-        }
-      }
-    };
-
-  useEffect(() => {
-    getStoreItems();
-  }, []);
+  const storeItems = useStoreItems();
 
   return <StyledNotesPanel {...props}>{storeItems && storeItems.map((item) => <ListItem {...item} key={item.id} />)}</StyledNotesPanel>;
   // return (
