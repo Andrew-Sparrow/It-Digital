@@ -21,7 +21,7 @@ const StyledTime = styled.p`
   color: #cecdcd;
 `;
 
-const StyledTitle = styled.p`
+const StyledTitle = styled.input`
   min-height: 40px;
   text-align: left;
   font-weight: 700;
@@ -77,7 +77,7 @@ const WorkSpace = (props) => {
   return (
     <StyledContainer>
       <StyledTime>{noteItem && formatDateFullForTitle(noteItem.time)}</StyledTime>
-      <StyledTitle>{noteItem && noteItem.title}</StyledTitle>
+      <StyledTitle value={noteItem && noteItem.title} />
       {/* <StyledEditPanel
          {...props}
          value={noteItem.text}

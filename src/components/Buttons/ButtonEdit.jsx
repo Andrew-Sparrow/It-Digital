@@ -2,12 +2,12 @@ import React from "react";
 import { Button } from "./Button";
 
 const ButtonEdit = () => {
-  const handleClickAdd = () => {
+  const handleClickEdit = () => {
     alert("handleClickEdit");
   };
 
   return (
-    <Button $outlined color={"#fff"} $align="flex-end" onClick={handleClickAdd}>
+    <Button $outlined color={"#fff"} $align="flex-end" onClick={handleClickEdit}>
       Edit
     </Button>
   );
