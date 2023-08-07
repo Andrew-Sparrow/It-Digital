@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { notes } from "../db";
 import { NoteContext } from "../App";
 import { formatDateFullForTitle } from "../util";
+import { useStoreItems } from "../lib/hooks";
 
 const StyledContainer = styled.section`
   display: flex;
@@ -56,20 +57,22 @@ const WorkSpace = (props) => {
   const [noteText, setNoteText] = useState("");
   const { activeId } = useContext(NoteContext);
 
+  const notesDB = useStoreItems();
+
   const handleChangeTextNote = (evt) => {
     setNoteText(evt.target.value);
-    let item = notes.find((note) => note.id === activeId);
+    let item = notesDB.find((note) => note.id === activeId);
     item.text = evt.target.value;
   };
 
   useEffect(() => {
     if (activeId) {
-      let item = notes.find((note) => note.id === activeId);
-      let text = item.text; //TODO fix error
+      let item = notesDB.find((note) => note.id === activeId);
+      let text = item.text;
       setNoteItem(item);
       setNoteText(text);
     }
-  }, [activeId, noteItem, setNoteItem]);
+  }, [activeId, noteItem, setNoteItem, notesDB]);
 
   return (
     <StyledContainer>

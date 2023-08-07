@@ -48,7 +48,7 @@ const ListItem = (props) => {
         <strong >{truncate(title, MAX_LETTERS_AMOUNT_TITLE)}</strong>
       </div>
       <div className='text'>
-        <p><span className='time'>{isToday() ? formatTimeHoursAndMinutes(time) : formatDateShort(time)}</span>{truncate(text, MAX_LETTERS_AMOUNT_TEXT)}</p>
+        <p><span className='time'>{isToday(time) ? formatTimeHoursAndMinutes(time) : formatDateShort(time)}</span>{truncate(text, MAX_LETTERS_AMOUNT_TEXT)}</p>
       </div>
     </StyledNoteItem>
   )
