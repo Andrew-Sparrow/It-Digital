@@ -4,6 +4,7 @@ import { notes } from "../db";
 import { NoteContext } from "../App";
 import { formatDateFullForTitle } from "../util";
 import { useStoreItems } from "../lib/hooks";
+import { NoteTitle } from "./noteTitle";
 
 const StyledContainer = styled.section`
   display: flex;
@@ -21,14 +22,18 @@ const StyledTime = styled.p`
   color: #cecdcd;
 `;
 
-const StyledTitle = styled.input`
-  min-height: 40px;
-  text-align: left;
-  font-weight: 700;
-  padding: 10px 20px 10px;
-  background-color: #888888;
-  color: #e0e0e0;
-`;
+// const StyledTitle = styled.input`
+//   min-height: 40px;
+//   text-align: left;
+//   font-weight: 700;
+//   padding: 10px 20px 10px;
+//   background-color: #888888;
+//   color: #e0e0e0;
+
+//   &:focus {
+//     outline: 3px ridge #2d6bbb;
+//   }
+// `;
 
 const StyledEditPanel = styled.textarea`
   width: 100%;
@@ -55,6 +60,8 @@ const StyledEditPanel = styled.textarea`
 const WorkSpace = (props) => {
   const [noteItem, setNoteItem] = useState(null);
   const [noteText, setNoteText] = useState("");
+  const [noteTime, setNoteTime] = useState(0);
+  const [noteTitle, setNoteTitle] = useState("");
   const { activeId } = useContext(NoteContext);
 
   const notesDB = useStoreItems();
@@ -68,25 +75,18 @@ const WorkSpace = (props) => {
   useEffect(() => {
     if (activeId) {
       let item = notesDB.find((note) => note.id === activeId);
-      let text = item.text;
       setNoteItem(item);
-      setNoteText(text);
+      setNoteText(item.text);
+      setNoteTime(item.time);
+      setNoteTitle(item.title);
     }
-  }, [activeId, noteItem, setNoteItem, notesDB]);
+  }, [activeId, noteItem, noteTitle, setNoteItem, notesDB]);
 
   return (
     <StyledContainer>
-      <StyledTime>{noteItem && formatDateFullForTitle(noteItem.time)}</StyledTime>
-      <StyledTitle value={noteItem && noteItem.title} />
-      {/* <StyledEditPanel
-         {...props}
-         value={noteItem.text}
-         onChange={(e) =>
-           setNoteItem((prevItem) => {
-             console.log(prevItem)
-             return Object.assign(prevItem, { text: e.target.value });
-           })
-         }></StyledEditPanel> */}
+      <StyledTime>{noteItem && formatDateFullForTitle(noteTime)}</StyledTime>
+      {/* <StyledTitle value={noteItem && noteItem.title} /> */}
+      <NoteTitle noteTitle={noteTitle} />
       <StyledEditPanel {...props} value={noteText} onChange={handleChangeTextNote}></StyledEditPanel>
     </StyledContainer>
   );
