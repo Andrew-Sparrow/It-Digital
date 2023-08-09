@@ -1,13 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Button } from "./Button";
+import { NoteContext } from "../../App";
+
 
 const ButtonDelete = () => {
-  const handleClickAdd = () => {
-    alert("handleClickDelete");
+  const { activeId } = useContext(NoteContext);
+
+  const handleClickDelete = () => {
+    alert(`handleClickDelete - ${activeId}`);
   };
 
   return (
-    <Button $outlined color={"#fff"} $align="flex-end" onClick={handleClickAdd}>
+    <Button $isDisabled={!Boolean(activeId)} $outlined color={"#fff"} $align="flex-end" onClick={handleClickDelete}>
       Delete
     </Button>
   );

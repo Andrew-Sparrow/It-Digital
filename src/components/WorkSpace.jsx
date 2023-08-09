@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
-import { notes } from "../db";
 import { NoteContext } from "../App";
 import { formatDateFullForTitle } from "../util";
 import { useStoreItems } from "../lib/hooks";
@@ -22,18 +21,6 @@ const StyledTime = styled.p`
   color: #cecdcd;
 `;
 
-// const StyledTitle = styled.input`
-//   min-height: 40px;
-//   text-align: left;
-//   font-weight: 700;
-//   padding: 10px 20px 10px;
-//   background-color: #888888;
-//   color: #e0e0e0;
-
-//   &:focus {
-//     outline: 3px ridge #2d6bbb;
-//   }
-// `;
 
 const StyledEditPanel = styled.textarea`
   width: 100%;
@@ -48,9 +35,9 @@ const StyledEditPanel = styled.textarea`
   color: ${({ color }) => color || "white"};
   padding: 20px;
 
-  &:focus {
-    outline: none;
-  }
+  ${({ $isOnFocus }) => $isOnFocus && `
+    background: #ff7878;
+  `}
 
   @media ${(props) => props.theme.media.desktop} {
     width: 100%;
@@ -85,7 +72,6 @@ const WorkSpace = (props) => {
   return (
     <StyledContainer>
       <StyledTime>{noteItem && formatDateFullForTitle(noteTime)}</StyledTime>
-      {/* <StyledTitle value={noteItem && noteItem.title} /> */}
       <NoteTitle noteTitle={noteTitle} />
       <StyledEditPanel {...props} value={noteText} onChange={handleChangeTextNote}></StyledEditPanel>
     </StyledContainer>

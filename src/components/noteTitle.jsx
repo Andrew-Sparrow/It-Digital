@@ -9,10 +9,7 @@ const StyledTitle = styled.input`
   padding: 10px 20px 10px;
   background-color: #888888;
   color: #e0e0e0;
-
-  &:focus {
-    outline: 3px ridge #2d6bbb;
-  }
+  border: none;
 `;
 
 

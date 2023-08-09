@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Button } from "./Button";
+import { NoteContext } from "../../App";
 
 const ButtonEdit = () => {
+  const { activeId } = useContext(NoteContext);
+
   const handleClickEdit = () => {
-    alert("handleClickEdit");
+    alert(`handleClickEdit - ${activeId}`);
   };
 
   return (
-    <Button $outlined color={"#fff"} $align="flex-end" onClick={handleClickEdit}>
+    <Button $isDisabled={!Boolean(activeId)} $outlined color={"#fff"} $align="flex-end" onClick={handleClickEdit}>
       Edit
     </Button>
   );

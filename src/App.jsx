@@ -52,7 +52,7 @@ function App() {
           <ToolBox />
           <PanelContainer>
             <SideBar />
-            <WorkSpace />
+              <WorkSpace $isOnFocus={false} />
           </PanelContainer>
         </StyledApp>
       )}
