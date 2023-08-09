@@ -15,7 +15,7 @@ const StyledNoteItem = styled.div`
   transition: 0.3s;
 
   ${({ $isActive }) => $isActive && `
-    background: #78aeff;
+    background: #3784f8;
   `}
 
   &:hover {
