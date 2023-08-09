@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect } from "react";
+import { useState, createContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import "./App.css";
@@ -26,6 +26,7 @@ export const NoteContext = createContext(null);
 function App() {
   const [activeId, setActiveId] = useState(null);
   const [isDBReady, setIsDBReady] = useState(false);
+  const textAreaRef = useRef();
 
   const handleInitDB = async () => {
     const status = await initDB();
@@ -42,7 +43,7 @@ function App() {
   }, [isDBReady]);
 
   return (
-    <NoteContext.Provider value={{ activeId, setActiveId, isDBReady }}>
+    <NoteContext.Provider value={{ activeId, setActiveId, isDBReady, textAreaRef }}>
       {!isDBReady ? (
         <main style={{ textAlign: "center", marginTop: "3rem" }}>
           <p style={{ padding: "26px", fontSize: "20px" }}>Loading DB... </p>
@@ -52,7 +53,7 @@ function App() {
           <ToolBox />
           <PanelContainer>
             <SideBar />
-              <WorkSpace $isOnFocus={false} />
+            <WorkSpace $isOnFocus={false} />
           </PanelContainer>
         </StyledApp>
       )}

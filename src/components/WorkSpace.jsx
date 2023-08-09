@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { NoteContext } from "../App";
 import { formatDateFullForTitle } from "../util";
@@ -49,7 +49,8 @@ const WorkSpace = (props) => {
   const [noteText, setNoteText] = useState("");
   const [noteTime, setNoteTime] = useState(0);
   const [noteTitle, setNoteTitle] = useState("");
-  const { activeId } = useContext(NoteContext);
+
+  const { activeId, textAreaRef } = useContext(NoteContext);
 
   const notesDB = useStoreItems();
 
@@ -73,7 +74,7 @@ const WorkSpace = (props) => {
     <StyledContainer>
       <StyledTime>{noteItem && formatDateFullForTitle(noteTime)}</StyledTime>
       <NoteTitle noteTitle={noteTitle} />
-      <StyledEditPanel {...props} value={noteText} onChange={handleChangeTextNote}></StyledEditPanel>
+      <StyledEditPanel ref={textAreaRef} {...props} value={noteText} onChange={handleChangeTextNote}></StyledEditPanel>
     </StyledContainer>
   );
 };

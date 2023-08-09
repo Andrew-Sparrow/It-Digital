@@ -3,10 +3,10 @@ import { Button } from "./Button";
 import { NoteContext } from "../../App";
 
 const ButtonEdit = () => {
-  const { activeId } = useContext(NoteContext);
+  const { activeId, textAreaRef } = useContext(NoteContext);
 
   const handleClickEdit = () => {
-    alert(`handleClickEdit - ${activeId}`);
+    textAreaRef.current.focus();
   };
 
   return (
