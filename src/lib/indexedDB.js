@@ -76,3 +76,26 @@ export const getStoreData = () => {
     }
   });
 }
+
+export const deleteNote = (key) => {
+  return new Promise((resolve) => {
+    request = indexedDB.open(DB_NAME, version);
+
+    request.onsuccess = () => {
+      db = request.result;
+
+      console.log(key);
+
+      db.transaction(STORE_NAME, 'readwrite')
+        .objectStore(STORE_NAME)
+        .delete(key);
+
+      console.log(`note deleted ${ request.result }`);
+      resolve(request.result);
+    }
+
+    request.onerror = (err) => {
+      console.error(`Error to delete note: ${ err.message }`)
+    }
+  });
+}
