@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 import { ListItem } from "./ListItem";
@@ -30,12 +30,9 @@ const StyledNotesPanel = styled.section`
 const SideBar = (props) => {
   const storeItems = useStoreItems();
 
-  return <StyledNotesPanel {...props}>{storeItems && storeItems.map((item) => <ListItem {...item} key={item.id} />)}</StyledNotesPanel>;
-  // return (
-  //   <StyledNotesPanel {...props}>{
-  //     notes.map((item) => <ListItem {...item} key={item.id} />)
-  //   }</StyledNotesPanel>
-  // )
+  return <StyledNotesPanel {...props}>
+    {storeItems && storeItems.map((item) => <ListItem {...item} key={item.id} />)}
+  </StyledNotesPanel>;
 };
 
 export { SideBar };

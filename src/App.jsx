@@ -6,8 +6,9 @@ import { WorkSpace } from "./components/WorkSpace";
 import { SideBar } from "./components/SideBar";
 import { PanelContainer } from "./components/PanelContainer";
 import { ToolBox } from "./components/ToolBox";
-import { addData, getStoreData, initDB } from "./lib/indexedDB";
+import { addData, initDB } from "./lib/indexedDB";
 import { notes } from "./db";
+import { useStoreItems } from "./lib/hooks";
 
 const StyledApp = styled.main`
   width: 100%;
@@ -26,14 +27,15 @@ export const NoteContext = createContext(null);
 function App() {
   const [activeId, setActiveId] = useState(null);
   const [isDBReady, setIsDBReady] = useState(false);
+  const [notes, setNotes] = useState([]);
   const textAreaRef = useRef();
 
   const handleInitDB = async () => {
     const status = await initDB();
 
     // add initial data to DB
-    await addData(notes[0]);
-    await addData(notes[1]);
+    // await addData(notes[0]);
+    // await addData(notes[1]);
     // await getStoreData();
     setIsDBReady(status);
   };

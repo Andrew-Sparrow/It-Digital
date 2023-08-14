@@ -61,13 +61,19 @@ export const addData = (data) => {
 
 export const getStoreData = () => {
   return new Promise((resolve) => {
+
     const request = db.transaction(STORE_NAME, 'readonly')
       .objectStore(STORE_NAME)
       .getAll();
 
     request.onsuccess = () => {
+      db.transaction(STORE_NAME, 'readwrite')
+        .objectStore(STORE_NAME)
+        .getAll();
+
       console.log('Got all the notes');
       console.log(request.result);
+
       resolve(request.result);
     }
 
@@ -77,14 +83,12 @@ export const getStoreData = () => {
   });
 }
 
-export const deleteNote = (key) => {
+export const deleteData = (key) => {
   return new Promise((resolve) => {
     request = indexedDB.open(DB_NAME, version);
 
     request.onsuccess = () => {
       db = request.result;
-
-      console.log(key);
 
       db.transaction(STORE_NAME, 'readwrite')
         .objectStore(STORE_NAME)

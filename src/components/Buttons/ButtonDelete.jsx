@@ -1,26 +1,29 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "./Button";
 import { NoteContext } from "../../App";
-import { deleteNote } from "../../lib/indexedDB";
+import { deleteData, getStoreData } from "../../lib/indexedDB";
 
 
 const ButtonDelete = () => {
   const { activeId, isDBReady } = useContext(NoteContext);
   const [errorObj, setErrorObj] = useState(null);
 
+
   const handleClickDelete = async (evt) => {
     evt.preventDefault();
 
     try {
       if (isDBReady) {
-        const res = await deleteNote( activeId );
-        console.log(res);
+        if (window.confirm("Are you sure?")) {
+          await deleteData(activeId);
+          await getStoreData();
+        }
       }
     } catch (err) {
       if (err instanceof Error) {
         setErrorObj(err.message);
       } else {
-        setErrorObj("Something went wrong to add new note");
+        setErrorObj("Something went wrong to delete note");
       }
     }
   };
